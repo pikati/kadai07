@@ -16,11 +16,11 @@ float Ally::make_rand() {
 	std::random_device rnd;
 	std::mt19937 mt(rnd());
 	std::uniform_int_distribution<> rand(90, 110);
-	return rand(mt) / 100;
+	return (float)rand(mt) / 100.0f;
 }
 
 int Ally::select_skill() {
-	int select;
+	int select = 0;
 	//‚±‚±‚É‹Z‚Æ‚©‚ğ•\¦‚·‚éˆ—‚â‘I‘ğ‚·‚éˆ—‚ğ‚Ô‚¿‚İI
 	return select;
 }

@@ -1,5 +1,8 @@
 #pragma once
-class Charactor
+#include "Task.h"
+
+class Charactor:
+	public Task
 {
 protected:
 	int m_maxhp;

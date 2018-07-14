@@ -1,0 +1,2 @@
+‚â‚Á‚½‚Ù‚¤‚ª‚¢‚¢‚±‚Æ
+EStart.cpp“à‚Ì‘I‘ðŽˆŠÖŒW‚Ì‚Æ‚±‚ë‚Ìprintf‚ðc++‚µ‚æ‚¤‚É‚·‚é

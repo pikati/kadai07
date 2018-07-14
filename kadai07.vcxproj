@@ -117,12 +117,23 @@
   <ItemGroup>
     <ClCompile Include="Ally.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Init.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Main_game.cpp" />
+    <ClCompile Include="Start.cpp" />
+    <ClCompile Include="Task.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ally.h" />
     <ClInclude Include="Charactor.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Init.h" />
+    <ClInclude Include="Main_game.h" />
+    <ClInclude Include="Start.h" />
+    <ClInclude Include="Task.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="todo.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
