@@ -1,15 +1,14 @@
 #pragma once
 #include "Charactor.h"
-class Ally :
+class Enemy :
 	public Charactor
 {
+private:
+	float m_mag;
 public:
-	Ally();
-	float make_rand() override;
-	
-	int select_skill();
+	float set_mag(int,int);
 	int attack(int, int) override;
 	int defence(int, int) override;
-	int used_item(int);
+	Enemy();
 };
 
