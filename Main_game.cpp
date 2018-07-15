@@ -51,14 +51,7 @@ int Main_game::draw() {
 			//cout << "a";
 			f.set_map(map, map_id);
 			//cout << "a";
-			//f.draw_map(map);
-			
-			for (int i = 0; i < 30; i++) {
-				for (int j = 0; j < 30; j++) {
-					cout << map[i][j];
-				}
-				cout << endl;
-			}
+			f.draw_map(map);
 			
 			//cout << "a";
 			key_wait();

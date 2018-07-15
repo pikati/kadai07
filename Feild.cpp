@@ -53,6 +53,8 @@ int Feild::move_map(int* a, int id) {
 }
 
 void Feild::set_map(int map[30][30], int id) {
+	int i;
+	int j;
 
 	switch (id)
 	{
@@ -91,7 +93,11 @@ void Feild::set_map(int map[30][30], int id) {
 			{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0 },
 			{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
 		};
-		map = m;
+		for (i = 0; i < 30; i++) {
+			for (j = 0; j < 30; j++) {
+				map[i][j] = m[i][j];
+			}
+		}
 	}
 		break;
 	default:
