@@ -1,4 +1,5 @@
 #include "Main_game.h"
+#include "Feild.h"
 #include <iostream>
 #include <Windows.h>
 #include <conio.h>
@@ -11,18 +12,31 @@ using namespace std;
 #define RIGHT 77
 #define ENTER 13
 
+#define FELES 0
+#define FELES_EAST 1
+#define FELES_WEST 2
+#define FELES_PLATEAU 3
+#define FELES_HIGHWAY 4
+#define FELES_MINE 5
+#define PIES 6
+#define KUCING 7
+
 int Main_game::draw() {
 	enum {
 		ch0,
-		ch1
+		ch1,
+		ch2
 	};
 
 	int ch = 0;//現在のチャプター
 	int cursor = 0;//カーソルの位置
-	int c;//文字
+	//int c;//文字
+	int map_id = FELES_EAST;
+	int map[30][30] = { 0 };
+	Feild f;
 
 	while (true) {
-
+		clear();
 		switch (ch)
 		{
 		case ch0:
@@ -32,15 +46,29 @@ int Main_game::draw() {
 		case ch1:
 			ch1_story();
 			ch++;
+			break;
+		case ch2:
+			//cout << "a";
+			f.set_map(map, map_id);
+			//cout << "a";
+			//f.draw_map(map);
+			
+			for (int i = 0; i < 30; i++) {
+				for (int j = 0; j < 30; j++) {
+					cout << map[i][j];
+				}
+				cout << endl;
+			}
+			
+			//cout << "a";
+			key_wait();
+			break;
 		default:
 			return 0;
 			break;
 		}
-	
-		c = get_key();
-		cursor = get_cursor(c, cursor);
 		
-		clear();
+		
 	}
 }
 
