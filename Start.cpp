@@ -18,7 +18,7 @@ int Start::draw() {
 	};
 
 	int cursor = 0;//カーソルの位置
-	int c;//文字
+	int c = 0;//文字
 
 	while (true) {
 
@@ -99,7 +99,14 @@ int Start::draw() {
 }
 
 int Start::get_key() {
-	return _getch();
+	int c;
+	c = _getch();
+	if (c == 0xe0) {
+		return _getch();
+	}
+	else {
+		return c;
+	}
 }
 
 int Start::get_cursor(int c, int cursor) {
@@ -123,11 +130,16 @@ int Start::get_cursor(int c, int cursor) {
 }
 
 void Start::dis() {
-	clear();
-	cout << "矢印キー ：移動" << endl;
-	cout << "enterキー：決定" << endl;
-	cout << "escキー　：ゲーム中にメニュー画面を開く" << endl;
-	cout << "enterキーで戻る" << endl;
+	while (get_key() != ENTER) {
+		clear();
+		cout << "矢印キー ：移動" << endl;
+		cout << "enterキー：決定" << endl;
+		cout << "escキー　：ゲーム中にメニュー画面を開く" << endl;
+		cout << "enterキーで戻る" << endl;
+	}
+}
+
+void Start::wait_key() {
 	if (get_key() == ENTER) {
 		return;
 	}

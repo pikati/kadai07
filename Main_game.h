@@ -7,7 +7,7 @@ public:
 	int draw() override;
 	int get_key() override;
 	int get_cursor(int, int) override;
-	void key_wait();
+	void wait_key() override;
 	void ch0_story();
 	void ch1_story();
 

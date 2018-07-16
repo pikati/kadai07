@@ -16,4 +16,12 @@ void init() {
 
 	// 変更した構造体情報をコンソールWindowにセットする
 	SetConsoleCursorInfo(hOut, &cci);
+
+	//ウィンドウサイズ変更
+	SMALL_RECT consoleWindow = { 0, 0, 100, 35 };
+	SetConsoleWindowInfo(
+		hOut, // HANDLE hConsoleOutput
+		TRUE,           // BOOL bAbsolute
+		&consoleWindow);// CONST SMALL_RECT *lpConsoleWindow
+
 }

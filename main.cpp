@@ -2,21 +2,6 @@
 #include "Main_game.h"
 #include "Init.h"
 
-/*マップの情報*/
-#define NON 0//何もない床
-#define PLAYER 1//プレイヤーの位置
-#define ENEMY1 2
-#define ENEMY_POP 7
-#define WALL_VER 8
-#define WALL_HOL 9
-#define DOT 10
-#define POWER 11
-#define UP 72
-#define DOWN 80
-#define LEFT 75
-#define RIGHT 77
-#define ENTER 13
-
 int main() {
 	int scene = 0;
 	Start s;

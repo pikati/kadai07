@@ -31,8 +31,6 @@ int Main_game::draw() {
 	int ch = 0;//現在のチャプター
 	int cursor = 0;//カーソルの位置
 	//int c;//文字
-	int map_id = FELES_EAST;
-	int map[30][30] = { 0 };
 	Feild f;
 
 	while (true) {
@@ -48,13 +46,7 @@ int Main_game::draw() {
 			ch++;
 			break;
 		case ch2:
-			//cout << "a";
-			f.set_map(map, map_id);
-			//cout << "a";
-			f.draw_map(map);
-			
-			//cout << "a";
-			key_wait();
+			f.map_mgr();
 			break;
 		default:
 			return 0;
@@ -66,7 +58,14 @@ int Main_game::draw() {
 }
 
 int Main_game::get_key() {
-	return _getch();
+	int c;
+	c = _getch();
+	if (c == 0xe0) {
+		return _getch();
+	}
+	else {
+		return c;
+	}
 }
 
 int Main_game::get_cursor(int c, int cursor) {
@@ -81,10 +80,9 @@ int Main_game::get_cursor(int c, int cursor) {
 	}
 }
 
-void Main_game::key_wait() {
-	if (get_key() == ENTER) {
-		return;
-	}
+void Main_game::wait_key() {
+	rewind(stdin);
+	getchar();
 }
 
 void Main_game::ch0_story() {
@@ -97,7 +95,7 @@ void Main_game::ch0_story() {
 	cout << "|でも悲しく、冷たい夢　　　　　　　　　　　　　　　　　　　|" << endl;
 	cout << "|　　　　　　　　　　　　　　　　　　　　　　　　　　　　　|" << endl;
 	cout << "ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー" << endl;
-	key_wait();
+	wait_key();
 	clear();
 	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
 	cout << "＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿" << endl;
@@ -107,7 +105,7 @@ void Main_game::ch0_story() {
 	cout << "|　　　　　　　　　　　　　　　　　　　　　　　　　　　　　|" << endl;
 	cout << "|　　　　　　　　　　　　　　　　　　　　　　　　　　　　　|" << endl;
 	cout << "ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー" << endl;
-	key_wait();
+	wait_key();
 	clear();
 }
 
@@ -121,7 +119,7 @@ void Main_game::ch1_story() {
 	cout << "|　　　　　　　　　　　　　　　　　　　　　　　　　　　　　|" << endl;
 	cout << "|　　　　　　　　　　　　　　　　　　　　　　　　　　　　　|" << endl;
 	cout << "ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー" << endl;
-	key_wait();
+	wait_key();
 	clear();
 	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
 	cout << "＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿" << endl;
@@ -131,6 +129,6 @@ void Main_game::ch1_story() {
 	cout << "|　　　　　　　　　　　　　　　　　　　　　　　　　　　　　|" << endl;
 	cout << "|　　　　　　　　　　　　　　　　　　　　　　　　　　　　　|" << endl;
 	cout << "ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー" << endl;
-	key_wait();
+	wait_key();
 	clear();
 }
