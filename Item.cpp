@@ -4,23 +4,10 @@
 
 string Item::get_item_name(int ID) {
 	for (int i = 0; i < QUANITITY; i++) {
-		OutputDebugString("loop\n");
 		if (ID == m_id[i]) {
-			OutputDebugString("a\n");
 			return m_name[i];
 		}
 	}
-	for (int n = 0; n < 3; n++) {
-		cout << "名前：" << m_name[n];
-		cout << "いｄ：" << m_id[n];
-		cout << "値段：" << m_value[n];
-		cout << "こう：" << m_atk[n];
-		cout << "ぼう：" << m_def[n];
-		cout << "まこ：" << m_matk[n];
-		cout << "まぼ：" << m_mdef[n];
-		cout << "はや：" << m_spd[n] << endl;
-	}
-	OutputDebugString("ERROR\n");
 	return m_name[QUANITITY];//見つからないとき
 }
 
@@ -115,7 +102,7 @@ void Item::set_items() {
 	m_mdef[2] = 0;
 	m_spd[2] = 0;
 
-	m_name[QUANITITY] = "era-";
+	m_name[QUANITITY] = "";
 	m_id[QUANITITY] = 0;
 	m_value[QUANITITY] = 0;
 	m_atk[QUANITITY] = 0;

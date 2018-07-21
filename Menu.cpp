@@ -9,8 +9,9 @@
 #define RIGHT 77
 #define ENTER 13
 
-int* Menu::menu_mgr(string name, int mhp, int hp, int mp, int mmp, int atk, int def, int matk, int mdef, int spd, int exp, int lev, int money) {
+int* Menu::menu_mgr(string name, int mhp, int hp, int mp, int mmp, int atk, int def, int matk, int mdef, int spd, int exp, int lev, int money, int item[99]) {
 	int back = 1;
+	i.set_items();
 	p_sta_m.name[0] = name;
 	status[0] = p_sta_m.max_hp[0] = mhp;
 	status[1] = p_sta_m.hp[0] = hp;
@@ -24,8 +25,17 @@ int* Menu::menu_mgr(string name, int mhp, int hp, int mp, int mmp, int atk, int 
 	status[9] = p_sta_m.exp[0] = exp;
 	status[10] = p_sta_m.lev[0] = lev;
 	status[11] = p_sta_m.money = money;
+	for (int i = 0; i < 99; i++) {
+		p_item[i] = item[i];
+		cout << "p_item" << p_item[i] << endl << "item" << item[i] << endl;
+	}
+	wait_key();
+	
 	while (back == 1) {
 		back = draw();
+	}
+	for (int i = 0; i < 99; i++) {
+		item[i] = p_item[i];
 	}
 	return status;
 }
@@ -47,66 +57,54 @@ int Menu::draw() {
 		clear();
 		cout << "\n\n";
 		if (cursor == tolk) {
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
-				FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE);
+			hit_cursor();
 			cout << "\t‚Í‚È‚·";
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
-				FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE);
+			nhit_corsor();
 		}
 		else {
 			cout << "\t‚Í‚È‚·";
 		}
 
 		if (cursor == spell) {
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
-				FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE);
+			hit_cursor();
 			cout << "\t‚¶‚ã‚à‚ñ\n\n";
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
-				FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE);
+			nhit_corsor();
 		}
 		else {
 			cout << "\t‚¶‚ã‚à‚ñ\n\n";
 		}
 
 		if (cursor == strength) {
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
-				FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE);
+			hit_cursor();
 			cout << "\t‚Â‚æ‚³";
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
-				FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE);
+			nhit_corsor();
 		}
 		else {
 			cout << "\t‚Â‚æ‚³";
 		}
 
 		if (cursor == tool) {
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
-				FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE);
+			hit_cursor();
 			cout << "\t‚Ç‚¤‚®\n\n";
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
-				FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE);
+			nhit_corsor();
 		}
 		else {
 			cout << "\t‚Ç‚¤‚®\n\n";
 		}
 
 		if (cursor == equipment) {
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
-				FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE);
+			hit_cursor();
 			cout << "\t‚»‚¤‚Ñ";
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
-				FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE);
+			nhit_corsor();
 		}
 		else {
 			cout << "\t‚»‚¤‚Ñ";
 		}
 
 		if (cursor == check) {
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
-				FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE);
+			hit_cursor();
 			cout << "\t‚µ‚ç‚×‚é\n\n";
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
-				FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE);
+			nhit_corsor();
 		}
 		else {
 			cout << "\t‚µ‚ç‚×‚é\n\n";
@@ -243,11 +241,131 @@ void Menu::draw_strength() {
 }
 
 void Menu::draw_tool() {
-	//“¹‹ï‚ğ•\¦
+	enum s {
+		i1, i2, i3,	i4, i5, i6
+	};
+
+	int cursor = 0;//ƒJ[ƒ\ƒ‹‚ÌˆÊ’u
+	int c = 0;//•¶š
+
+	while (true) {
+		clear();
+		cout << "\n\n";
+
+		cout << "\n\n";
+		cout << "  QQQQQQQQQQ " << endl;
+		if (cursor == i1) {
+			hit_cursor();
+			cout << "|" << i.get_item_name(p_item[i1]);
+			space(i.get_item_name(p_item[i1]).size());
+			cout << "|" << endl;
+			nhit_corsor();
+		}
+		else {
+			cout << "|" << i.get_item_name(p_item[i1]);
+			space(i.get_item_name(p_item[i1]).size());
+			cout << "|" << endl;
+		}
+
+		if (cursor == i2) {
+			hit_cursor();
+			cout << "|" << i.get_item_name(p_item[i2]);
+			space(i.get_item_name(p_item[i2]).size());
+			cout << "|" << endl;
+			nhit_corsor();
+		}
+		else {
+			cout << "|" << i.get_item_name(p_item[i2]);
+			space(i.get_item_name(p_item[i2]).size());
+			cout << "|" << endl;
+		}
+
+		if (cursor == i3) {
+			hit_cursor();
+			cout << "|" << i.get_item_name(p_item[i3]);
+			space(i.get_item_name(p_item[i3]).size());
+			cout << "|" << endl;
+			nhit_corsor();
+		}
+		else {
+			cout << "|" << i.get_item_name(p_item[i3]);
+			space(i.get_item_name(p_item[i3]).size());
+			cout << "|" << endl;
+		}
+
+		if (cursor == i4) {
+			hit_cursor();
+			cout << "|" << i.get_item_name(p_item[i4]);
+			space(i.get_item_name(p_item[i4]).size());
+			cout << "|" << endl;
+			nhit_corsor();
+		}
+		else {
+			cout << "|" << i.get_item_name(p_item[i4]);
+			space(i.get_item_name(p_item[i4]).size());
+			cout << "|" << endl;
+		}
+
+		if(cursor == i5) {
+			hit_cursor();
+			cout << "|" << i.get_item_name(p_item[i5]);
+			space(i.get_item_name(p_item[i5]).size());
+			cout << "|" << endl;
+			nhit_corsor();
+		}
+		else {
+			cout << "|" << i.get_item_name(p_item[i5]);
+			space(i.get_item_name(p_item[i5]).size());
+			cout << "|" << endl;
+		}
+
+		if (cursor == i6) {
+			hit_cursor();
+			cout << "|" << i.get_item_name(p_item[i6]);
+			space(i.get_item_name(p_item[i6]).size());
+			cout << "|" << endl;
+			nhit_corsor();
+		}
+		else {
+			cout << "|" << i.get_item_name(p_item[i6]);
+			space(i.get_item_name(p_item[i6]).size());
+			cout << "|" << endl;
+		}
+		c = get_key();
+		cursor = get_cursor(c, cursor);
+		switch (c)
+		{
+		case ENTER:
+			if (cursor == i1) {
+				//˜b‚·ˆ—
+			}
+			if (cursor == i2) {
+				draw_spell();
+			}
+			if (cursor == i3) {
+				draw_strength();
+			}
+			if (cursor == i4) {
+				draw_tool();
+			}
+			if (cursor == i5) {
+				draw_equ();
+			}
+			if (cursor == i6) {
+				//’²‚×‚éˆ—
+			}
+			break;
+		case 0x1b:
+			return;
+		default:
+			break;
+		}
+		clear();
+	} 
 }
 
 void Menu::draw_equ() {
-	//‘•”õ‰æ–Ê‚ğ•\¦
+	
 }
 
 int Menu::get_length(int status) {
@@ -270,4 +388,14 @@ void Menu::space(int length) {
 	for (i = 0; i <= 14 - length - 4; i++) {
 		cout << " ";
 	}
+}
+
+void Menu::hit_cursor() {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
+		FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE);
+}
+
+void Menu::nhit_corsor() {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
+		FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE);
 }

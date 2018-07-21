@@ -48,7 +48,7 @@ void Feild::map_mgr() {
 		m_dir = get_key();
 		if (m_dir == 0x1b) {
 			status = menu.menu_mgr(p_sta.name[0], p_sta.max_hp[0], p_sta.hp[0], p_sta.max_mp[0], p_sta.mp[0], p_sta.atk[0], 
-				p_sta.def[0], p_sta.matk[0], p_sta.mdef[0], p_sta.spd[0], p_sta.exp[0], p_sta.lev[0], p_sta.money);
+				p_sta.def[0], p_sta.matk[0], p_sta.mdef[0], p_sta.spd[0], p_sta.exp[0], p_sta.lev[0], p_sta.money, p_sta.item);
 			continue;
 		}
 		tolk(m_map, m_xy, memory_dir);
@@ -576,15 +576,15 @@ void Feild::buy(int ID) {
 			case ENTER:
 				if (cursor == g0) {
 					clear();
-					decision(g0, name[g0]);
+					decision(g0, id[g0], name[g0]);
 				}
 				if (cursor == g1) {
 					clear();
-					decision(g1, name[g1]);
+					decision(g1, id[g1], name[g1]);
 				}
 				if (cursor == g2) {
 					clear();
-					decision(g2, name[g2]);
+					decision(g2, id[g2], name[g2]);
 				}
 				break;
 			case 0x1b:
@@ -600,7 +600,7 @@ void Feild::buy(int ID) {
 	}
 }
 
-void Feild::decision(int idx, string name) {
+void Feild::decision(int idx, int id, string name) {
 	int length_name = 0;
 	int length_value = 0;
 	int cursor = 0;//ÉJÅ[É\ÉãÇÃà íu
@@ -613,7 +613,6 @@ void Feild::decision(int idx, string name) {
 
 	length_value = calc_value_length(value[idx]);
 	length_name = name.size();
-	OutputDebugString("00000");
 
 	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
 	cout << "ÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQÅQ" << endl;
@@ -660,8 +659,15 @@ void Feild::decision(int idx, string name) {
 		{
 		case ENTER:
 			if (cursor == yes) {
+				if (!get_item(id)) {
+					cout << "\n\n\téùÇøï®Ç™Ç¢Ç¡ÇœÇ¢ÇæÇ»" << endl;
+					wait_key();
+					clear();
+					return;
+				}
 				ally.set_money(-value[idx]);
 				p_sta.money = ally.get_money();
+				
 				clear();
 				return;
 			}
@@ -794,4 +800,14 @@ void Feild::set_status(int id) {
 	default:
 		break;
 	}
+}
+
+bool Feild::get_item(int id) {
+	for (int n = 0; n < 99; n++) {
+		if (p_sta.item[n] == 0) {
+			p_sta.item[n] = i.get_item_id(id);
+			return true;
+		}
+	}
+	return false;
 }

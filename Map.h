@@ -17,7 +17,7 @@ public:
 	virtual int get_cursor(int, int) = 0;
 	virtual void buy(int id) = 0;
 	//virtual void sell() = 0;
-	virtual void decision(int id, string name) = 0;
+	virtual void decision(int idx, int id, string name) = 0;
 	virtual void space(int length) = 0;
 	virtual void wait_key() = 0;
 

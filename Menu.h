@@ -6,6 +6,7 @@ class Menu :
 	public Task
 {
 private:
+	Item i;
 	typedef struct {
 		string name[4];
 		int max_hp[4];
@@ -20,12 +21,14 @@ private:
 		int exp[4];
 		int lev[4];
 		int money;
+		int item[99];
 	}p_status;
 
 	p_status p_sta_m;
 	int status[11];
+	int p_item[99];
 public:
-	int* menu_mgr(string name, int mhp, int hp, int mp, int mmp, int atk, int def, int matk, int mdef, int spd, int exp, int lev, int money);
+	int* menu_mgr(string name, int mhp, int hp, int mp, int mmp, int atk, int def, int matk, int mdef, int spd, int exp, int lev, int money, int* item);
 	int draw() override;
 	int get_key() override;
 	int get_cursor(int, int) override;
@@ -38,5 +41,7 @@ public:
 	int get_length(int status);
 	int get_length(string name);
 	void space(int length);
+	void hit_cursor();
+	void nhit_corsor();
 };
 

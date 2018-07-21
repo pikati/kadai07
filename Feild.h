@@ -40,9 +40,11 @@ private:
 		int spd[4];
 		int exp[4];
 		int lev[4];
+		int item[99] = { 0 };
 		int status[4];
 		int money;
 	}p_status;
+
 
 	p_status p_sta;
 
@@ -61,7 +63,7 @@ public:
 	int select_trading() override;
 	void buy(int id) override;
 	//void sell() override;
-	void decision(int idx, string name) override;
+	void decision(int idx, int id, string name) override;
 	void space(int length) override;
 	int get_cursor(int, int) override;
 	void wait_key() override;
@@ -71,8 +73,7 @@ public:
 	void set_item_infos(int n, int id);
 	int calc_value_length(int value);
 	void set_status(int id);
-	string get_name();
-
+	bool get_item(int id);
 };
 
 inline void Feild::clear() {
