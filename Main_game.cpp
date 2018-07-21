@@ -4,8 +4,6 @@
 #include <Windows.h>
 #include <conio.h>
 
-using namespace std;
-
 #define UP 72
 #define DOWN 80
 #define LEFT 75

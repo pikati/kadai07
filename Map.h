@@ -18,7 +18,6 @@ public:
 	virtual void buy(int id) = 0;
 	//virtual void sell() = 0;
 	virtual void decision(int id, string name) = 0;
-	virtual int get_value(int id) = 0;;
 	virtual void space(int length) = 0;
 	virtual void wait_key() = 0;
 

@@ -116,22 +116,30 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ally.cpp" />
+    <ClCompile Include="Buttle.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Feild.cpp" />
     <ClCompile Include="Init.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Main_game.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Skill.cpp" />
     <ClCompile Include="Start.cpp" />
     <ClCompile Include="Task.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ally.h" />
+    <ClInclude Include="Buttle.h" />
     <ClInclude Include="Charactor.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Feild.h" />
     <ClInclude Include="Init.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Main_game.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Skill.h" />
     <ClInclude Include="Start.h" />
     <ClInclude Include="Task.h" />
   </ItemGroup>
