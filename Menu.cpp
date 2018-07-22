@@ -9,7 +9,7 @@
 #define RIGHT 77
 #define ENTER 13
 
-int* Menu::menu_mgr(string name, int mhp, int hp, int mp, int mmp, int atk, int def, int matk, int mdef, int spd, int exp, int lev, int money, int item[99]) {
+int* Menu::menu_mgr(string name, int mhp, int hp, int mp, int mmp, int atk, int def, int matk, int mdef, int spd, int exp, int lev, int money, int item_id[99]) {
 	int back = 1;
 	i.set_items();
 	p_sta_m.name[0] = name;
@@ -25,18 +25,28 @@ int* Menu::menu_mgr(string name, int mhp, int hp, int mp, int mmp, int atk, int 
 	status[9] = p_sta_m.exp[0] = exp;
 	status[10] = p_sta_m.lev[0] = lev;
 	status[11] = p_sta_m.money = money;
-	for (int i = 0; i < 99; i++) {
-		p_item[i] = item[i];
-		cout << "p_item" << p_item[i] << endl << "item" << item[i] << endl;
+	for (int n = 0; n < 99; n++) {
+		p_item_id[n] = item_id[n];
+		p_item_name[n] = i.get_item_name(p_item_id[n]);
 	}
-	wait_key();
-	
 	while (back == 1) {
 		back = draw();
 	}
 	for (int i = 0; i < 99; i++) {
-		item[i] = p_item[i];
+		item_id[i] = p_item_id[i];
 	}
+	status[0] = p_sta_m.max_hp[0];
+	status[1] = p_sta_m.hp[0];
+	status[2] = p_sta_m.max_mp[0];
+	status[3] = p_sta_m.mp[0];
+	status[4] = p_sta_m.atk[0];
+	status[5] = p_sta_m.def[0];
+	status[6] = p_sta_m.matk[0];
+	status[7] = p_sta_m.mdef[0];
+	status[8] = p_sta_m.spd[0];
+	status[9] = p_sta_m.exp[0];
+	status[10] = p_sta_m.lev[0];
+	status[11] = p_sta_m.money;
 	return status;
 }
 
@@ -127,7 +137,6 @@ int Menu::draw() {
 				draw_tool();
 			}
 			if (cursor == equipment) {
-				draw_equ();
 			}
 			if (cursor == check) {
 				//’²‚×‚éˆ—
@@ -241,9 +250,10 @@ void Menu::draw_strength() {
 }
 
 void Menu::draw_tool() {
-	enum s {
-		i1, i2, i3,	i4, i5, i6
-	};
+	int c_num[99];
+	for (int i = 0; i < 99; i++) {
+		c_num[i] = i;
+	}
 
 	int cursor = 0;//ƒJ[ƒ\ƒ‹‚ÌˆÊ’u
 	int c = 0;//•¶š
@@ -251,84 +261,157 @@ void Menu::draw_tool() {
 	while (true) {
 		clear();
 		cout << "\n\n";
-
-		cout << "\n\n";
 		cout << "  QQQQQQQQQQ " << endl;
-		if (cursor == i1) {
+		if (cursor == c_num[0]) {
+			cout << "|";
 			hit_cursor();
-			cout << "|" << i.get_item_name(p_item[i1]);
-			space(i.get_item_name(p_item[i1]).size());
-			cout << "|" << endl;
+			cout << p_item_name[c_num[0]];
+			space(p_item_name[c_num[0]].size());
 			nhit_corsor();
+			cout << "|" << endl;
 		}
 		else {
-			cout << "|" << i.get_item_name(p_item[i1]);
-			space(i.get_item_name(p_item[i1]).size());
+			cout << "|" << p_item_name[c_num[0]];
+			space(p_item_name[c_num[0]].size());
 			cout << "|" << endl;
 		}
 
-		if (cursor == i2) {
+		if (cursor == c_num[1]) {
+			cout << "|";
 			hit_cursor();
-			cout << "|" << i.get_item_name(p_item[i2]);
-			space(i.get_item_name(p_item[i2]).size());
-			cout << "|" << endl;
+			cout << p_item_name[c_num[1]];
+			space(p_item_name[c_num[1]].size());
 			nhit_corsor();
+			cout << "|" << endl;
 		}
 		else {
-			cout << "|" << i.get_item_name(p_item[i2]);
-			space(i.get_item_name(p_item[i2]).size());
+			cout << "|" << p_item_name[c_num[1]];
+			space(p_item_name[c_num[1]].size());
 			cout << "|" << endl;
 		}
 
-		if (cursor == i3) {
-			hit_cursor();
-			cout << "|" << i.get_item_name(p_item[i3]);
-			space(i.get_item_name(p_item[i3]).size());
-			cout << "|" << endl;
+		if (cursor == c_num[2]) {
+			cout << "|";
+			hit_cursor(); 
+			cout << p_item_name[c_num[2]];
+			space(p_item_name[c_num[2]].size());
 			nhit_corsor();
+			cout << "|" << endl;
 		}
 		else {
-			cout << "|" << i.get_item_name(p_item[i3]);
-			space(i.get_item_name(p_item[i3]).size());
+			cout << "|" << p_item_name[c_num[2]];
+			space(p_item_name[c_num[2]].size());
 			cout << "|" << endl;
 		}
 
-		if (cursor == i4) {
-			hit_cursor();
-			cout << "|" << i.get_item_name(p_item[i4]);
-			space(i.get_item_name(p_item[i4]).size());
-			cout << "|" << endl;
+		if (cursor == c_num[3]) {
+			cout << "|";
+			hit_cursor(); 
+			cout << p_item_name[c_num[3]];
+			space(p_item_name[c_num[3]].size());
 			nhit_corsor();
+			cout << "|" << endl;
 		}
 		else {
-			cout << "|" << i.get_item_name(p_item[i4]);
-			space(i.get_item_name(p_item[i4]).size());
+			cout << "|" << p_item_name[c_num[3]];
+			space(p_item_name[c_num[3]].size());
 			cout << "|" << endl;
 		}
 
-		if(cursor == i5) {
-			hit_cursor();
-			cout << "|" << i.get_item_name(p_item[i5]);
-			space(i.get_item_name(p_item[i5]).size());
-			cout << "|" << endl;
+		if(cursor == c_num[4]) {
+			cout << "|";
+			hit_cursor(); 
+			cout << p_item_name[c_num[4]];
+			space(p_item_name[c_num[4]].size());
 			nhit_corsor();
+			cout << "|" << endl;
 		}
 		else {
-			cout << "|" << i.get_item_name(p_item[i5]);
-			space(i.get_item_name(p_item[i5]).size());
+			cout << "|" << p_item_name[c_num[4]];
+			space(p_item_name[c_num[4]].size());
 			cout << "|" << endl;
 		}
 
-		if (cursor == i6) {
+		if (cursor == c_num[5]) {
+			cout << "|" << p_item_name[c_num[5]];
 			hit_cursor();
-			cout << "|" << i.get_item_name(p_item[i6]);
-			space(i.get_item_name(p_item[i6]).size());
-			cout << "|" << endl;
+			space(p_item_name[c_num[5]].size());
 			nhit_corsor();
+			cout << "|" << endl;
 		}
 		else {
-			cout << "|" << i.get_item_name(p_item[i6]);
-			space(i.get_item_name(p_item[i6]).size());
+			cout << "|" << p_item_name[c_num[5]];
+			space(p_item_name[c_num[5]].size());
+			cout << "|" << endl;
+		}
+
+		if (cursor == c_num[6]) {
+			cout << "|";
+			hit_cursor(); 
+			cout << p_item_name[c_num[6]];
+			space(p_item_name[c_num[6]].size());
+			nhit_corsor();
+			cout << "|" << endl;
+		}
+		else {
+			cout << "|" << p_item_name[c_num[6]];
+			space(p_item_name[c_num[6]].size());
+			cout << "|" << endl;
+		}
+
+		if (cursor == c_num[7]) {
+			cout << "|";
+			hit_cursor(); 
+			cout << p_item_name[c_num[7]];
+			space(p_item_name[c_num[7]].size());
+			nhit_corsor();
+			cout << "|" << endl;
+		}
+		else {
+			cout << "|" << p_item_name[c_num[7]];
+			space(p_item_name[c_num[7]].size());
+			cout << "|" << endl;
+		}
+
+		if (cursor == c_num[8]) {
+			cout << "|";
+			hit_cursor(); 
+			cout << p_item_name[c_num[8]];
+			space(p_item_name[c_num[8]].size());
+			nhit_corsor();
+			cout << "|" << endl;
+		}
+		else {
+			cout << "|" << p_item_name[c_num[8]];
+			space(p_item_name[c_num[8]].size());
+			cout << "|" << endl;
+		}
+
+		if (cursor == c_num[9]) {
+			cout << "|";
+			hit_cursor(); 
+			cout << p_item_name[c_num[9]];
+			space(p_item_name[c_num[9]].size());
+			nhit_corsor();
+			cout << "|" << endl;
+		}
+		else {
+			cout << "|" << p_item_name[c_num[9]];
+			space(p_item_name[c_num[9]].size());
+			cout << "|" << endl;
+		}
+
+		if (cursor == c_num[10]) {
+			cout << "|";
+			hit_cursor(); 
+			cout << p_item_name[c_num[10]];
+			space(p_item_name[c_num[10]].size());
+			nhit_corsor();
+			cout << "|" << endl;
+		}
+		else {
+			cout << "|" << p_item_name[c_num[10]];
+			space(p_item_name[c_num[10]].size());
 			cout << "|" << endl;
 		}
 		c = get_key();
@@ -336,23 +419,60 @@ void Menu::draw_tool() {
 		switch (c)
 		{
 		case ENTER:
-			if (cursor == i1) {
-				//˜b‚·ˆ—
+			if (cursor == c_num[0]) {
+				if (p_item_id[c_num[0]] > 0 && p_item_id[c_num[0]] < 160){
+					equip(p_item_id[c_num[0]], c_num[0]);
+				}
 			}
-			if (cursor == i2) {
-				draw_spell();
+			if (cursor == c_num[1]) {
+				if (p_item_id[c_num[1]] > 0 && p_item_id[c_num[1]] < 160) {
+					equip(p_item_id[c_num[1]], c_num[1]);
+				}
 			}
-			if (cursor == i3) {
-				draw_strength();
+			if (cursor == c_num[2]) {
+				if (p_item_id[c_num[2]] > 0 && p_item_id[c_num[2]] < 160) {
+					equip(p_item_id[c_num[2]], c_num[2]);
+				}
 			}
-			if (cursor == i4) {
-				draw_tool();
+			if (cursor == c_num[3]) {
+				if (p_item_id[c_num[3]] > 0 && p_item_id[c_num[3]] < 160) {
+					equip(p_item_id[c_num[3]], c_num[3]);
+				}
 			}
-			if (cursor == i5) {
-				draw_equ();
+			if (cursor == c_num[4]) {
+				if (p_item_id[c_num[4]] > 0 && p_item_id[c_num[4]] < 160) {
+					equip(p_item_id[c_num[4]], c_num[4]);
+				}
 			}
-			if (cursor == i6) {
-				//’²‚×‚éˆ—
+			if (cursor == c_num[5]) {
+				if (p_item_id[c_num[5]] > 0 && p_item_id[c_num[5]] < 160) {
+					equip(p_item_id[c_num[5]], c_num[5]);
+				}
+			}
+			if (cursor == c_num[6]) {
+				if (p_item_id[c_num[6]] > 0 && p_item_id[c_num[6]] < 160) {
+					equip(p_item_id[c_num[6]], c_num[6]);
+				}
+			}
+			if (cursor == c_num[7]) {
+				if (p_item_id[c_num[7]] > 0 && p_item_id[c_num[7]] < 160) {
+					equip(p_item_id[c_num[7]], c_num[7]);
+				}
+			}
+			if (cursor == c_num[8]) {
+				if (p_item_id[c_num[8]] > 0 && p_item_id[c_num[8]] < 160) {
+					equip(p_item_id[c_num[8]], c_num[8]);
+				}
+			}
+			if (cursor == c_num[9]) {
+				if (p_item_id[c_num[9]] > 0 && p_item_id[c_num[9]] < 160) {
+					equip(p_item_id[c_num[9]], c_num[9]);
+				}
+			}
+			if (cursor == c_num[10]) {
+				if (p_item_id[c_num[10]] > 0 && p_item_id[c_num[10]] < 160) {
+					equip(p_item_id[c_num[10]], c_num[10]);
+				}
 			}
 			break;
 		case 0x1b:
@@ -362,10 +482,6 @@ void Menu::draw_tool() {
 		}
 		clear();
 	} 
-}
-
-void Menu::draw_equ() {
-	
 }
 
 int Menu::get_length(int status) {
@@ -385,7 +501,7 @@ int Menu::get_length(string name) {
 
 void Menu::space(int length) {
 	int i;
-	for (i = 0; i <= 14 - length - 4; i++) {
+	for (i = 0; i <= 14 - length; i++) {
 		cout << " ";
 	}
 }
@@ -398,4 +514,23 @@ void Menu::hit_cursor() {
 void Menu::nhit_corsor() {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
 		FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE);
+}
+
+void Menu::equip(int id,int idx) {
+	static int index[5] = { 0 };
+	if (id > 0 && id < 40) {
+		if (!p_sta_m.is_equip[0]) {
+			p_item_name[idx] += "E";
+			p_sta_m.atk[0] += i.get_item_atk(id);
+			p_sta_m.is_equip[0] = true;
+			index[0] = idx;
+		}
+		else {
+			if (!p_item_name[index[0]].empty()) {
+				p_item_name[index[0]].pop_back();
+				p_sta_m.atk[0] -= i.get_item_atk(p_item_id[index[0]]);
+				p_sta_m.is_equip[0] = false;
+			}
+		}
+	}
 }

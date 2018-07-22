@@ -40,7 +40,7 @@ private:
 		int spd[4];
 		int exp[4];
 		int lev[4];
-		int item[99] = { 0 };
+		int item_id[99] = { 0 };
 		int status[4];
 		int money;
 	}p_status;

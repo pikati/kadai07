@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-#define QUANITITY 3
+#define QUANITITY 180
 
 using namespace std;
 

@@ -48,7 +48,19 @@ void Feild::map_mgr() {
 		m_dir = get_key();
 		if (m_dir == 0x1b) {
 			status = menu.menu_mgr(p_sta.name[0], p_sta.max_hp[0], p_sta.hp[0], p_sta.max_mp[0], p_sta.mp[0], p_sta.atk[0], 
-				p_sta.def[0], p_sta.matk[0], p_sta.mdef[0], p_sta.spd[0], p_sta.exp[0], p_sta.lev[0], p_sta.money, p_sta.item);
+				p_sta.def[0], p_sta.matk[0], p_sta.mdef[0], p_sta.spd[0], p_sta.exp[0], p_sta.lev[0], p_sta.money, p_sta.item_id);
+			p_sta.max_hp[0] = status[0];
+			p_sta.hp[0] = status[1];
+			p_sta.max_mp[0] = status[2];
+			p_sta.mp[0] = status[3];
+			p_sta.atk[0] = status[4];
+			p_sta.def[0] = status[5];
+			p_sta.matk[0] = status[6];
+			p_sta.mdef[0] = status[7];
+			p_sta.spd[0] = status[8];
+			p_sta.exp[0] = status[9];
+			p_sta.lev[0] = status[10];
+			p_sta.money = status[11];
 			continue;
 		}
 		tolk(m_map, m_xy, memory_dir);
@@ -804,8 +816,8 @@ void Feild::set_status(int id) {
 
 bool Feild::get_item(int id) {
 	for (int n = 0; n < 99; n++) {
-		if (p_sta.item[n] == 0) {
-			p_sta.item[n] = i.get_item_id(id);
+		if (p_sta.item_id[n] == 0) {
+			p_sta.item_id[n] = i.get_item_id(id);
 			return true;
 		}
 	}

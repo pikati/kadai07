@@ -102,6 +102,15 @@ void Item::set_items() {
 	m_mdef[2] = 0;
 	m_spd[2] = 0;
 
+	m_name[2] = "–Ø‚ÌƒiƒbƒNƒ‹";
+	m_id[2] = 3;
+	m_value[2] = 20;
+	m_atk[2] = 1;
+	m_def[2] = 0;
+	m_matk[2] = 0;
+	m_mdef[2] = 0;
+	m_spd[2] = 0;
+
 	m_name[QUANITITY] = "";
 	m_id[QUANITITY] = 0;
 	m_value[QUANITITY] = 0;

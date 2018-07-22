@@ -22,11 +22,14 @@ private:
 		int lev[4];
 		int money;
 		int item[99];
+		bool is_equip[5] = { false };
 	}p_status;
 
 	p_status p_sta_m;
-	int status[11];
-	int p_item[99];
+
+	int status[11];//Œ»İ‚Ìó‘ÔiHP‚âATK‚È‚Çj‚ğ•Û‘¶‚µ‚Ä‚¨‚­‚Æ‚±‚ë
+	string p_item_name[99];
+	int p_item_id[99];
 public:
 	int* menu_mgr(string name, int mhp, int hp, int mp, int mmp, int atk, int def, int matk, int mdef, int spd, int exp, int lev, int money, int* item);
 	int draw() override;
@@ -37,11 +40,11 @@ public:
 	void draw_spell();
 	void draw_strength();
 	void draw_tool();
-	void draw_equ();
 	int get_length(int status);
 	int get_length(string name);
 	void space(int length);
 	void hit_cursor();
 	void nhit_corsor();
+	void equip(int id, int idx);
 };
 
